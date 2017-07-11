@@ -1,0 +1,20 @@
+2017/07/11 10:43:33 [emerg] 12820#11020: unknown "webroot" variable
+2017/07/11 10:47:19 [emerg] 5960#5952: unknown "webroot" variable
+2017/07/11 10:51:07 [notice] 5808#836: using the "select" event method
+2017/07/11 10:51:07 [notice] 5808#836: using the "select" event method
+2017/07/11 10:51:07 [notice] 5808#836: nginx/1.12.0
+2017/07/11 10:51:07 [notice] 5808#836: nginx/1.12.0
+2017/07/11 10:51:07 [info] 5808#836: OS: 260200 build:9200, "", suite:300, type:1
+2017/07/11 10:51:07 [notice] 5808#836: start worker processes
+2017/07/11 10:51:07 [notice] 5808#836: start worker processes
+2017/07/11 10:51:07 [notice] 5808#836: start worker process 5308
+2017/07/11 10:51:07 [notice] 5808#836: start worker process 5308
+2017/07/11 10:51:07 [notice] 5308#13116: nginx/1.12.0
+2017/07/11 10:51:07 [notice] 5308#13116: nginx/1.12.0
+2017/07/11 10:51:07 [info] 5308#13116: OS: 260200 build:9200, "", suite:300, type:1
+2017/07/11 10:51:07 [notice] 5308#13116: create thread 11628
+2017/07/11 10:51:07 [notice] 5308#13116: create thread 11628
+2017/07/11 10:51:07 [notice] 5308#13116: create thread 4416
+2017/07/11 10:51:07 [notice] 5308#13116: create thread 4416
+2017/07/11 10:51:07 [notice] 5308#13116: create thread 3092
+2017/07/11 10:51:07 [notice] 5308#13116: create thread 3092
