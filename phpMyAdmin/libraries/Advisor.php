@@ -9,6 +9,7 @@
 namespace PMA\libraries;
 
 use \Exception;
+use PMA\libraries\URL;
 
 require_once 'libraries/advisor.lib.php';
 
@@ -324,10 +325,9 @@ class Advisor
 
             // Replaces {server_variable} with 'server_variable'
             // linking to server_variables.php
-            $rule['recommendation'] = preg_replace(
+            $rule['recommendation'] = preg_replace_callback(
                 '/\{([a-z_0-9]+)\}/Ui',
-                '<a href="server_variables.php' . PMA_URL_getCommon()
-                . '&filter=\1">\1</a>',
+                array($this, 'replaceVariable'),
                 $this->translate($rule['recommendation'])
             );
 
@@ -353,6 +353,19 @@ class Advisor
     private function replaceLinkURL($matches)
     {
         return 'href="' . PMA_linkURL($matches[2]) . '" target="_blank" rel="noopener noreferrer"';
+    }
+
+    /**
+     * Callback for wrapping variable edit links
+     *
+     * @param array $matches List of matched elements form preg_replace_callback
+     *
+     * @return string Replacement value
+     */
+    private function replaceVariable($matches)
+    {
+        return '<a href="server_variables.php' . URL::getCommon(array('filter' => $matches[1]))
+                . '">' . htmlspecialchars($matches[1]). '</a>';
     }
 
     /**
@@ -428,6 +441,7 @@ class Advisor
         // Actually evaluate the code
         ob_start();
         try {
+            // TODO: replace by using symfony/expression-language
             eval('$value = ' . $expr . ';');
             $err = ob_get_contents();
         } catch (Exception $e) {
@@ -439,8 +453,13 @@ class Advisor
 
         // Error handling
         if ($err) {
+            // Remove PHP 7.2 and newer notice (it's not really interesting for user)
             throw new Exception(
-                strip_tags($err)
+                str_replace(
+                    ' (this will throw an Error in a future version of PHP)',
+                    '',
+                    strip_tags($err)
+                )
                 . '<br />Executed code: $value = ' . htmlspecialchars($expr) . ';'
             );
         }

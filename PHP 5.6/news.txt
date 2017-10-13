@@ -1,5 +1,140 @@
 PHP                                                                        NEWS
 |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+06 Jul 2017, PHP 5.6.31
+
+- Core:
+  . Fixed bug #73807 (Performance problem with processing post request over
+    2000000 chars). (Nikita)
+  . Fixed bug #74111 (Heap buffer overread (READ: 1) finish_nested_data from
+    unserialize). (Nikita)
+  . Fixed bug #74603 (PHP INI Parsing Stack Buffer Overflow Vulnerability).
+    (Stas)
+  . Fixed bug #74819 (wddx_deserialize() heap out-of-bound read via 
+    php_parse_date()). (Derick)
+
+- GD:
+  . Fixed bug #74435 (Buffer over-read into uninitialized memory). (cmb)
+
+- mbstring:
+  . Add oniguruma upstream fix (CVE-2017-9224, CVE-2017-9226, CVE-2017-9227,
+    CVE-2017-9228, CVE-2017-9229) (Remi, Mamoru TASAKA)
+
+- OpenSSL:
+  . Fixed bug #74651 (negative-size-param (-1) in memcpy in zif_openssl_seal()).
+    (Stas)
+
+- PCRE:
+  . Fixed bug #74087 (Segmentation fault in PHP7.1.1(compiled using the bundled PCRE library)).
+    (Stas)
+
+- WDDX:
+   . Fixed bug #74145 (wddx parsing empty boolean tag leads to SIGSEGV). (Stas)
+
+19 Jan 2017, PHP 5.6.30
+
+- EXIF:
+  . Fixed bug #73737 (FPE when parsing a tag format). (Stas)
+
+- GD:
+  . Fixed bug #73549 (Use after free when stream is passed to imagepng). (cmb)
+  . Fixed bug #73868 (DOS vulnerability in gdImageCreateFromGd2Ctx()). (cmb)
+  . Fixed bug #73869 (Signed Integer Overflow gd_io.c). (cmb)
+
+- Intl:
+  . Fixed bug #68447 (grapheme_extract take an extra trailing character). 
+    (SATŌ Kentarō)
+
+- Phar:
+  . Fixed bug #73764 (Crash while loading hostile phar archive). (Stas)
+  . Fixed bug #73768 (Memory corruption when loading hostile phar). (Stas)
+  . Fixed bug #73773 (Seg fault when loading hostile phar). (Stas)
+
+- SQLite3:
+  . Reverted fix for bug #73530	(Unsetting result set may reset other result
+    set). (cmb)
+
+- Standard:
+  . Fixed bug #70213 (Unserialize context shared on double class lookup).
+    (Taoguang Chen)
+  . Fixed bug #73825 (Heap out of bounds read on unserialize in
+    finish_nested_data()). (Stas)
+
+08 Dec 2016, PHP 5.6.29
+
+- Mbstring:
+  . Fixed bug #73505 (string length overflow in mbfl_memory_device_output
+    function). (Stas)
+
+- Mysqlnd:
+  . Fixed bug #64526 (Add missing mysqlnd.* parameters to php.ini-*). (cmb)
+
+- Opcache:
+  . Fixed bug #73402 (Opcache segfault when using class constant to call a
+    method). (Laruence)
+  . Fixed bug #69090 (check cached files permissions)
+
+- OpenSSL
+  . Fixed bug #72776 (Invalid parameter in memcpy function trough
+    openssl_pbkdf2). (Jakub Zelenka)
+
+- Postgres:
+  . Fixed bug #73498 (Incorrect SQL generated for pg_copy_to()). (Craig Duncan)
+
+- SOAP:
+  . Fixed bug #73452 (Segfault (Regression for #69152)). (Dmitry)
+
+- SQLite3:
+  . Fixed bug #73530 (Unsetting result set may reset other result set). (cmb)
+
+- Standard:
+   . Fixed bug #73297 (HTTP stream wrapper should ignore HTTP 100 Continue).
+     (rowan dot collins at gmail dot com)
+
+- WDDX:
+  . Fixed bug #73631 (Memory leak due to invalid wddx stack processing). 
+    (bughunter at fosec dot vn).
+
+10 Nov 2016, PHP 5.6.28
+
+- Core:
+  . Fixed bug #73337 (try/catch not working with two exceptions inside a same
+    operation). (Dmitry)
+
+- Bz2:
+  . Fixed bug #73356 (crash in bzcompress function). (Stas)
+
+-GD:
+  . Fixed bug #73213 (Integer overflow in imageline() with antialiasing). (cmb)
+  . Fixed bug #73272 (imagescale() is not affected by, but affects
+    imagesetinterpolation()). (cmb)
+  . Fixed bug #73279 (Integer overflow in gdImageScaleBilinearPalette()). (cmb)
+  . Fixed bug #73280 (Stack Buffer Overflow in GD dynamicGetbuf). (cmb)
+  . Fixed bug #72482 (Illegal write/read access caused by gdImageAALine overflow).
+    (cmb)
+  . Fixed bug #72696 (imagefilltoborder stackoverflow on truecolor images). (cmb)
+
+- Imap:
+  . Fixed bug #73418 (Integer Overflow in "_php_imap_mail" leads Heap Overflow).
+    (Anatol)
+
+- SPL:
+  . Fixed bug #73144 (Use-after-free in ArrayObject Deserialization). (Stas)
+
+- SOAP:
+  . Fixed bug #73037 (SoapServer reports Bad Request when gzipped). (Anatol)
+
+- SQLite3:
+  . Fixed bug #73333 (2147483647 is fetched as string). (cmb)
+
+- Standard:
+  . Fixed bug #73203 (passing additional_parameters causes mail to fail). (cmb)
+  . Fixed bug #73188 (use after free in userspace streams). (Sara)
+  . Fixed bug #73192 (parse_url return wrong hostname). (Nikita)
+
+- Wddx:
+  . Fixed bug #73331 (NULL Pointer Dereference in WDDX Packet Deserialization
+    with PDORow). (Stas)
+
 13 Oct 2016, PHP 5.6.27
 
 - Core:
@@ -8,6 +143,17 @@ PHP                                                                        NEWS
   . Fixed bug #73058 (crypt broken when salt is 'too' long). (Anatol)
   . Fixed bug #72703 (Out of bounds global memory read in BF_crypt triggered by
     password_verify). (Anatol)
+  . Fixed bug #73189 (Memcpy negative size parameter php_resolve_path). (Stas)
+  . Fixed bug #73147 (Use After Free in unserialize()). (Stas)
+
+- BCmath:
+  . Fixed bug #73190 (memcpy negative parameter _bc_new_num_ex). (Stas)
+
+- DOM:
+  . Fixed bug #73150 (missing NULL check in dom_document_save_html). (Stas)
+
+- Ereg:
+  . Fixed bug #73284 (heap overflow in php_ereg_replace function). (Stas)
 
 - Filter:
   . Fixed bug #72972 (Bad filter for the flags FILTER_FLAG_NO_RES_RANGE and
@@ -32,11 +178,22 @@ PHP                                                                        NEWS
     files). (cmb)
   . Fixed bug #73161 (imagecreatefromgd2() may leak memory). (cmb)
 
+- Intl:
+  . Fixed bug #73218 (add mitigation for ICU int overflow). (Stas)
+
+- Imap:
+  . Fixed bug #73208 (integer overflow in imap_8bit caused heap corruption).
+    (Stas)
+
 - Mbstring:
   . Fixed bug #72994 (mbc_to_code() out of bounds read). (Laruence, cmb)
   . Fixed bug #66964 (mb_convert_variables() cannot detect recursion). (Yasuo)
   . Fixed bug #72992 (mbstring.internal_encoding doesn't inherit default_charset).
     (Yasuo)
+  . Fixed bug #73082 (string length overflow in mb_encode_* function). (Stas)
+
+- PCRE:
+  . Fixed bug #73174 (heap overflow in php_pcre_replace_impl). (Stas)
 
 - Opcache:
   . Fixed bug #72590 (Opcache restart with kill_all_lockers does not work).
@@ -45,12 +202,26 @@ PHP                                                                        NEWS
 - OpenSSL:
   . Fixed bug #73072 (Invalid path SNI_server_certs causes segfault).
     (Jakub Zelenka)
+  . Fixed bug #73275 (crash in openssl_encrypt function). (Stas)
+  . Fixed bug #73276 (crash in openssl_random_pseudo_bytes function). (Stas)
 
 - Session:
   . Fixed bug #68015 (Session does not report invalid uid for files save handler).
     (Yasuo)
   . Fixed bug #73100 (session_destroy null dereference in ps_files_path_create).
     (cmb)
+
+- SimpleXML:
+  . Fixed bug #73293 (NULL pointer dereference in SimpleXMLElement::asXML()).
+    (Stas)
+
+- SPL:
+  . Fixed bug #73073 (CachingIterator null dereference when convert to string).
+    (Stas)
+
+- Standard:
+  . Fixed bug #73240 (Write out of bounds at number_format). (Stas)
+  . Fixed bug #73017 (memory corruption in wordwrap function). (Stas)
 
 - Stream:
   . Fixed bug #73069 (readfile() mangles files larger than 2G). (Laruence)
@@ -214,6 +385,8 @@ PHP                                                                        NEWS
   . Fixed bug #72697 (select_colors write out-of-bounds). (Stas)
   . Fixed bug #72709 (imagesetstyle() causes OOB read for empty $styles). (cmb)
   . Fixed bug #72730 (imagegammacorrect allows arbitrary write access). (Stas)
+  . Fixed bug #72494 (imagecropauto out-of-bounds access). (Fernando, Pierre,
+    cmb)
 
 - Intl:
   . Partially fixed #72506 (idn_to_ascii for UTS #46 incorrect for long domain

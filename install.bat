@@ -1,6 +1,6 @@
 @echo off
 
-set "mariadb_folder=%~dp0\MariaDB\datas"
+set "mariadb_folder=%~dp0\MariaDB\data"
 set "mongodb_folder=%~dp0\MongoDB"
 
 sc GetDisplayName MariaDB > nul
@@ -37,7 +37,7 @@ sc GetDisplayName MongoDB > nul
 
 if %errorlevel% EQU 1060 (
     echo "正在安装 MongoDB 服务..."
-    %~dp0\MongoDB\bin\mongod.exe --logpath %mongodb_folder%\logs\mongodb.log --logappend --dbpath %mongodb_folder%\datas --directoryperdb --serviceName MongoDB --install > nul
+    %~dp0\MongoDB\bin\mongod.exe --logpath %mongodb_folder%\logs\mongodb.log --logappend --dbpath %mongodb_folder%\data --directoryperdb --serviceName MongoDB --install > nul
     sc config MongoDB start=demand > nul
     echo "MongoDB 服务安装完成"
     echo.
